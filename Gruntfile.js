@@ -8,6 +8,7 @@ module.exports = function(grunt) {
                     'bower_components/jasmine/lib/jasmine-core/jasmine.js',
                     'bower_components/jasmine/lib/jasmine-core/jasmine-html.js',
                     'bower_components/jasmine/lib/jasmine-core/boot.js',
+                    'node_modules/eventbusjs/lib/eventbus.min.js',
                     'src/**/*.js'
                 ],
                 options: {
