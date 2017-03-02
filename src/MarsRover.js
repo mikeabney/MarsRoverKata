@@ -9,7 +9,7 @@ function MarsRover(location, direction, grid) {
         if (commands === undefined) { // Getter
             return this.commandsArray;
         } else { // Setter
-            for(var index = 0; index < commands.length; index++) {
+            for (var index = 0; index < commands.length; index++) {
                 var command = commands[index];
                 if (command === 'f' || command === 'b') {
                     move(command);
@@ -26,11 +26,12 @@ function MarsRover(location, direction, grid) {
         self.location = [
             (self.location[0] + self.grid[0]) % self.grid[0],
             (self.location[1] + self.grid[1]) % self.grid[1]
-        ]
+        ];
     }
 
     function move(command) {
-        var xIncrease = 0, yIncrease = 0;
+        var xIncrease = 0,
+            yIncrease = 0;
         if (self.direction === 'N') {
             yIncrease = -1;
         } else if (self.direction === 'E') { // East
@@ -61,7 +62,7 @@ function MarsRover(location, direction, grid) {
     this.directions = ['N', 'E', 'S', 'W'];
 
     function directionAsNumber(direction) {
-        for(var index = 0; index < 4; index++) {
+        for (var index = 0; index < 4; index++) {
             if (self.directions[index] === direction) return index;
         }
     }
