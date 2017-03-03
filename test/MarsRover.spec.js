@@ -120,16 +120,46 @@ describe('Mars Rover', function() {
     });
 
     describe('Implement validation on commands', function() {
-        it('invalid input should do nothing', function() {
+        it('invalid input should not move', function() {
             var mr = new MarsRover([12, 21], 'N');
             mr.commands(['do', 'this', 'and', 'then', 'do', 'that']);
             expect(mr.location).toEqual([12, 21]);
+        });
+        it('invalid input should not change direction', function() {
+            var mr = new MarsRover([12, 21], 'N');
+            mr.commands(['do', 'this', 'and', 'then', 'do', 'that']);
+            expect(mr.direction).toEqual('N');
+        });
+    });
+
+    describe('Implement obstacle detection', function() {
+        it('running into an object should halt command', function() {
+            var mr = new MarsRover([0, 0], 'S', [100, 100], [
+                [0, 1],
+                [0, 98]
+            ]);
+            mr.commands(['f']);
+            expect(mr.location).toEqual([0, 0]);
+        });
+        it('running into an object should halt all remaining commands', function() {
+            var mr = new MarsRover([0, 0], 'E', [100, 100], [
+                [1, 0],
+                [10, 2]
+            ]);
+            mr.commands(['f', 'l', 'b', 'r']);
+            expect(mr.location).toEqual([0, 0]);
+        });
+        it('collision should work when wrapping edge of map', function() {
+            var mr = new MarsRover([0, 0], 'S', [100, 100], [
+                [0, 99]
+            ]);
+            mr.commands(['b']);
+            expect(mr.location).toEqual([0, 0]);
         });
     });
 
     // TODO Implement obstacle detection before each move to a new square. If a given sequence of commands encounters an obstacle, the rover moves up to the last possible point and reports the obstacle.
     // TODO Check whether object values are correct (location = number array, direction = ['N'|'S'|'E'|'W'], grid = number array)
-    // TODO Check whether command values are correct (['f'|'b'|'l'|'r'])
     // TODO Ignore direction and commands case (lower/upper)
 
 });

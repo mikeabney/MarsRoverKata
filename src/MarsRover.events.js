@@ -18,7 +18,7 @@ EventBus.addEventListener("resetLocation", function(event) {
         (event.target.location[1] + event.target.grid[1]) % event.target.grid[1]
     ];
 
-    event.target.location = location;
+    EventBus.dispatch("roverLocationUpdated", event.target, location);
 });
 
 EventBus.addEventListener("move", function(event, command) {
@@ -40,6 +40,7 @@ EventBus.addEventListener("move", function(event, command) {
     var location = event.target.location;
     location[0] += xIncrease;
     location[1] += yIncrease;
+    EventBus.dispatch("roverLocationUpdated", event.target, location);
 });
 
 EventBus.addEventListener('turn', function(event, command) {
@@ -50,7 +51,15 @@ EventBus.addEventListener('turn', function(event, command) {
         directionNumber = (directionNumber + 1) % 4;
     }
 
-    event.target.direction = event.target.directions[directionNumber];
+    EventBus.dispatch("roverDirectionUpdated", event.target, event.target.directions[directionNumber]);
+});
+
+EventBus.addEventListener("roverLocationUpdated", function(event, location) {
+    event.target.location = location;
+});
+
+EventBus.addEventListener("roverDirectionUpdated", function(event, direction) {
+    event.target.direction = direction;
 });
 
 function directionAsNumber(direction, directions) {

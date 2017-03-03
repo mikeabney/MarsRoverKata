@@ -1,8 +1,9 @@
-function MarsRover(location, direction, grid) {
+function MarsRover(location, direction, grid, obstacles) {
 
     this.location = (location === undefined) ? [0, 0] : location;
     this.direction = (direction === undefined) ? 'N' : direction;
     this.grid = (grid === undefined) ? [100, 100] : grid;
+    this.obstacles = (obstacles === undefined) ? [] : obstacles;
     this.directions = ['N', 'E', 'S', 'W'];
 
     this.commands = function(commands) {
