@@ -6,6 +6,12 @@ EventBus.addEventListener("roverCommand", function(event, command) {
     }
 });
 
+EventBus.addEventListener("roverCommand", function(event, command) {
+    if ('fblr'.indexOf(command) === -1) {
+        alert('Invalid Input');
+    }
+});
+
 EventBus.addEventListener("resetLocation", function(event) {
     var location = [
         (event.target.location[0] + event.target.grid[0]) % event.target.grid[0],

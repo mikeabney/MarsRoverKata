@@ -119,6 +119,14 @@ describe('Mars Rover', function() {
         });
     });
 
+    describe('Implement validation on commands', function() {
+        it('invalid input should do nothing', function() {
+            var mr = new MarsRover([12, 21], 'N');
+            mr.commands(['do', 'this', 'and', 'then', 'do', 'that']);
+            expect(mr.location).toEqual([12, 21]);
+        });
+    });
+
     // TODO Implement obstacle detection before each move to a new square. If a given sequence of commands encounters an obstacle, the rover moves up to the last possible point and reports the obstacle.
     // TODO Check whether object values are correct (location = number array, direction = ['N'|'S'|'E'|'W'], grid = number array)
     // TODO Check whether command values are correct (['f'|'b'|'l'|'r'])
