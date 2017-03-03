@@ -28,20 +28,18 @@ EventBus.addEventListener("move", function(event, command) {
     location[1] += yIncrease;
 });
 
-var directions = ['N', 'E', 'S', 'W'];
-
 EventBus.addEventListener('turn', function(event, command) {
-    var directionNumber = directionAsNumber(event.target.direction);
+    var directionNumber = directionAsNumber(event.target.direction, event.target.directions);
     if (command === 'l') { // Left
         directionNumber = (directionNumber + 4 - 1) % 4;
     } else { // Right
         directionNumber = (directionNumber + 1) % 4;
     }
 
-    event.target.direction = directions[directionNumber];
+    event.target.direction = event.target.directions[directionNumber];
 });
 
-function directionAsNumber(direction) {
+function directionAsNumber(direction, directions) {
     for (var index = 0; index < 4; index++) {
         if (directions[index] === direction) return index;
     }
