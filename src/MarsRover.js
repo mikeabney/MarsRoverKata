@@ -11,11 +11,7 @@ function MarsRover(location, direction, grid) {
         } else { // Setter
             for (var index = 0; index < commands.length; index++) {
                 var command = commands[index];
-                if (command === 'f' || command === 'b') {
-                    EventBus.dispatch("move", this, command);
-                } else if (command === 'l' || command === 'r') {
-                    EventBus.dispatch("turn", this, command);
-                }
+                EventBus.dispatch('roverCommand', this, command);
             }
             EventBus.dispatch("resetLocation", this);
             this.commandsArray = commands;

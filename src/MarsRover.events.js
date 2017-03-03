@@ -1,3 +1,11 @@
+EventBus.addEventListener("roverCommand", function(event, command) {
+    if (command === 'f' || command === 'b') {
+        EventBus.dispatch("move", event.target, command);
+    } else if (command === 'l' || command === 'r') {
+        EventBus.dispatch("turn", event.target, command);
+    }
+});
+
 EventBus.addEventListener("resetLocation", function(event) {
     var location = [
         (event.target.location[0] + event.target.grid[0]) % event.target.grid[0],
